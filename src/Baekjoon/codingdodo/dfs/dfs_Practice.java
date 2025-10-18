@@ -3,7 +3,7 @@ package Baekjoon.codingdodo.dfs;
 import java.util.ArrayList;
 import java.util.List;
 
-public class dfsPractice {
+public class dfs_Practice {
     public static void main(String[] args) {
         // 그래프 크기(정점 개수)
         int n = 5;
