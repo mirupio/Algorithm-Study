@@ -2,21 +2,18 @@ package Baekjoon.ppusda.dynamicprogramming;
 
 // Bottom-Up(반복문)
 public class DpTabulation_practice {
-    static int fib(int n) {
+    public static void main(String[] args) {
+        int n = 10;
         int[] dp = new int[n + 1];
+
+        // 기본값 설정
         dp[0] = 0;
         dp[1] = 1;
 
         for(int i = 2; i <= n; i++) {
-            dp[i] = dp[i - 1] + dp[i - 2]; // 점화식 적용 -> 반복문으로 채움
+            dp[i] = dp[i - 1] + dp[i - 2];
         }
 
-        return dp[n];
-    }
-
-    public static void main(String[] args) {
-        int n = 10;
-
-        System.out.println("fib(" + n + ") = " + fib(n));
+        System.out.println("fib(" + n + ") = " + dp[n]);
     }
 }
