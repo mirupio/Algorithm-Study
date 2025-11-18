@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+// N-Queen
 public class Q2806 {
     static int N;
     static int[][] map;
