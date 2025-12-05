@@ -1,4 +1,4 @@
-package Baekjoon.solvedac.dynamicprogramming;
+package Baekjoon.algorithm.dynamicprogramming;
 
 import java.io.BufferedReader;
 import java.io.IOException;
