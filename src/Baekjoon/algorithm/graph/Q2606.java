@@ -4,11 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Q2606 {
     static int count = 0;
+    static int count_bfs = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -28,10 +31,15 @@ public class Q2606 {
             graph.get(b).add(a);
         }
 
-        boolean[] visited = new boolean[vertex+1];
+        /*boolean[] visited = new boolean[vertex+1];
         dfs(1, visited, graph);
 
-        System.out.println(count);
+        System.out.println(count);*/
+
+        boolean[] visited = new boolean[vertex+1];
+        bfs(1, visited, graph);
+
+        System.out.println(count_bfs);
 
     }
 
@@ -42,6 +50,24 @@ public class Q2606 {
             if(!visited[next]) {
                 dfs(next, visited, graph);
                 count++;
+            }
+        }
+    }
+
+    static void bfs(int start, boolean[] visited, List<List<Integer>> graph) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+        visited[start] = true;
+
+        while(!queue.isEmpty()) {
+            int node = queue.poll();
+
+            for(int next : graph.get(node)) {
+                if(!visited[next]) {
+                    queue.add(next);
+                    visited[next] = true;
+                    count_bfs++;
+                }
             }
         }
     }
