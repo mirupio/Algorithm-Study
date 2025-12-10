@@ -49,11 +49,11 @@ public class Q1504 {
         long total1 = (long) a1+a2+a3;
 
         // 1 -> v2 -> v1 -> N
-        // 1 출발 -> distance[v2]
+        // 1 -> v2
         int b1 = travel(1, v2);
-        // v2 출발 -> distance[v1]
+        // v2 -> v1
         int b2 = travel(v2, v1);
-        // v1 출발 -> distance[N]
+        // v1 -> N
         int b3 = travel(v1, N);
         long total2 = (long) b1+b2+b3;
 
