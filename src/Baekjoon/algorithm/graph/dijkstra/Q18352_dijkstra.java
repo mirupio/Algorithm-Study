@@ -1,17 +1,16 @@
-package Baekjoon.algorithm.graph;
+package Baekjoon.algorithm.graph.dijkstra;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class Q18352_bfs {
-    static Queue<int[]> queue;
+public class Q18352_dijkstra {
+    static PriorityQueue<int[]> pq;
     static List<List<Integer>> graph;
     static boolean[] visited;
     static int[] distance;
@@ -36,14 +35,18 @@ public class Q18352_bfs {
             graph.get(A).add(B);
         }
 
-        queue = new LinkedList<>();
-        queue.add(new int[]{X,0});
+        pq = new PriorityQueue<>((a,b) -> a[1]-b[1]);
+        pq.add(new int[]{X,0});
 
         visited = new boolean[N+1];
-        visited[X] = true;
 
         distance = new int[N+1];
-        bfs();
+        for(int i = 1; i <= N; i++) {
+            distance[i] = Integer.MAX_VALUE;
+        }
+        distance[X] = 0;
+
+        dijkstra();
 
         List<Integer> cities = new ArrayList<>();
         for (int i = 0; i <= N; i++) {
@@ -64,18 +67,23 @@ public class Q18352_bfs {
 
     }
 
-    static void bfs() {
-        while(!queue.isEmpty()) {
-            int[] cur = queue.poll();
-            int num = cur[0];
-            int dis = cur[1];
+    static void dijkstra() {
+        while(!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            int now = cur[0];
+            int nowDis = cur[1];
 
-            distance[num] = dis;
+            if (visited[now]) {
+                continue;
+            }
+            visited[now] = true;
 
-            for(int next: graph.get(num)){
-                if(!visited[next]){
-                    queue.add(new int[]{next,dis+1});
-                    visited[next] = true;
+            for(int next: graph.get(now)){
+                int newDis = nowDis + 1;
+
+                if(distance[next] > newDis){
+                    distance[next] = newDis;
+                    pq.add(new int[]{next,newDis});
                 }
             }
         }

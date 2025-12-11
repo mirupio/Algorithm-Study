@@ -1,14 +1,13 @@
-package Baekjoon.algorithm.graph;
+package Baekjoon.algorithm.graph.bfs;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Q14502_2 {
+public class Q14502 {
     static int[] dRow = {-1, 1, 0, 0};
     static int[] dCol = {0, 0, -1, 1};
     static int N,M;
@@ -22,8 +21,9 @@ public class Q14502_2 {
         M = Integer.parseInt(st.nextToken());
 
         graph = new int[N][M];
-        ArrayList<int[]> list_0 = new ArrayList<>();
-        ArrayList<int[]> list_2 = new ArrayList<>();
+        LinkedList<int[]> list_0 = new LinkedList<>();
+        LinkedList<int[]> list_2 = new LinkedList<>();
+        LinkedList<Integer> counts = new LinkedList<>();
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for(int j = 0; j < M; j++) {
@@ -47,7 +47,6 @@ public class Q14502_2 {
         }
 
         // 0 중 3개 골라서 1로 바꾸기
-        int max = 0;
         for(int i = 0; i< list_0.size(); i++) {
             for(int j = i+1; j< list_0.size(); j++) {
                 for(int k = j+1; k< list_0.size(); k++) {
@@ -78,8 +77,15 @@ public class Q14502_2 {
                             }
                         }
                     }
-                    max = Math.max(max, count);
+                    counts.add(count);
                 }
+            }
+        }
+
+        int max = 0;
+        for(int i = 0; i< counts.size(); i++) {
+            if(counts.get(i) > max) {
+                max = counts.get(i);
             }
         }
 

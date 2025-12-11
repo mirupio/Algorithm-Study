@@ -1,4 +1,4 @@
-package Baekjoon.algorithm.graph;
+package Baekjoon.algorithm.graph.dijkstra;
 
 import java.io.BufferedReader;
 import java.io.IOException;
