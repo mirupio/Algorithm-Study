@@ -1,4 +1,4 @@
-package Baekjoon.algorithm.graph.dfs;
+package Baekjoon.algorithm.graph.dfs.backtracking;
 
 import java.io.BufferedReader;
 import java.io.IOException;
