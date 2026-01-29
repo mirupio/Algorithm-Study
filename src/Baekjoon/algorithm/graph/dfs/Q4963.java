@@ -1,4 +1,4 @@
-package Baekjoon.algorithm.graph;
+package Baekjoon.algorithm.graph.dfs;
 
 import java.io.IOException;
 import java.io.*;
