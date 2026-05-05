@@ -3,8 +3,60 @@ package programmers.gilbut;
 import java.util.*;
 
 class Q87377 {
+	private static class Point{
+		public final long x,y;
+
+		private Point(long x, long y) {
+			this.x = x;
+			this.y = y;
+		}
+	}
+
+	private Point intersection(long A, long B, long C, long D, long E, long F) {
+		double x = (double) (B*F - E*D) / (A*D - B*C);
+		double y = (double) (E*C - A*F) / (A*D - B*C);
+
+		if (x % 1 != 0 || y % 1 != 0) {
+			return null;
+		}
+
+		return new Point((long)x, (long)y);
+	}
+
+	private Point getMinimumPoint(List<Point> points){
+		long x_min = Long.MAX_VALUE;
+		long y_min = Long.MAX_VALUE;
+
+		for (Point p : points) {
+			if (p.x < x_min) {
+				x_min = p.x;
+			}
+			if (p.y < y_min) {
+				y_min = p.y;
+			}
+		}
+
+		return new Point(x_min, y_min);
+	}
+
+	private Point getMaximumPoint(List<Point> points){
+		long x_max = Long.MIN_VALUE;
+		long y_max = Long.MIN_VALUE;
+
+		for (Point p : points) {
+			if (p.x > x_max) {
+				x_max = p.x;
+			}
+			if (p.y > y_max) {
+				y_max = p.y;
+			}
+		}
+
+		return new Point(x_max, y_max);
+	}
+
 	public String[] solution(int[][] line) {
-		List<int[]> list = new ArrayList<>();
+		List<Point> list = new ArrayList<>();
 
 		for(int i=0;i<line.length;i++){
 			for(int j=i+1;j<line.length;j++){
@@ -16,66 +68,27 @@ class Q87377 {
 				int D = line[j][1];
 				int F = line[j][2];
 
-				if(isAvailable(A,B,C,D)){
-
-					long denominator = (long)A*D - (long)B*C;
-
-					long numeratorX = (long)B*F - (long)E*D;
-					long numeratorY = (long)E*C - (long)A*F;
-
-					if(numeratorX % denominator != 0 || numeratorY % denominator != 0){
-						continue;
-					}
-
-					long result_x = numeratorX / denominator;
-					int x;
-					if(result_x == (long)result_x){
-						x = (int)result_x;
-					}
-					else{
-						continue;
-					}
-
-					long result_y = numeratorY / denominator;
-					int y;
-					if(result_y == (long)result_y){
-						y = (int)result_y;
-					}
-					else{
-						continue;
-					}
-
-					list.add(new int[]{x,y});
+				Point intersection = intersection(A, B, C, D, E, F);
+				if (intersection != null) {
+					list.add(intersection);
 				}
 			}
 		}
 
-		long h_min = Long.MAX_VALUE;
-		long h_max = Long.MIN_VALUE;
-		long v_min = Long.MAX_VALUE;
-		long v_max = Long.MIN_VALUE;
-		for(int l=0;l<list.size();l++){
-			h_min = Math.min(h_min,list.get(l)[0]);
-			h_max = Math.max(h_max,list.get(l)[0]);
-			v_min = Math.min(v_min,list.get(l)[1]);
-			v_max = Math.max(v_max,list.get(l)[1]);
-		}
+		Point min = getMinimumPoint(list);
+		Point max = getMaximumPoint(list);
 
-		int height = (int)(v_max-v_min+1);
-		int width = (int)(h_max-h_min+1);
+		int height = (int)(max.y-min.y+1);
+		int width = (int)(max.x-min.x+1);
+
 		char[][] arr = new char[height][width];
-		for(int h=0;h<height;h++){
-			for(int v=0;v<width;v++){
-				arr[h][v] = '.';
-			}
+		for (char[] row : arr) {
+			Arrays.fill(row, '.');
 		}
 
-		for(int[] l:list){
-			int x = l[0];
-			int y = l[1];
-
-			int row = (int)(v_max - y);
-			int col = (int)(x - h_min);
+		for(Point p:list){
+			int row = (int)(max.y - p.y);
+			int col = (int)(p.x - min.x);
 
 			arr[row][col] = '*';
 		}
@@ -86,14 +99,5 @@ class Q87377 {
 		}
 
 		return answer;
-	}
-
-	boolean isAvailable(int A, int B, int C, int D){
-		if((long)A*D-(long)B*C == 0){
-			return false;
-		}
-		else{
-			return true;
-		}
 	}
 }
