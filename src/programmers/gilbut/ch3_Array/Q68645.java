@@ -1,4 +1,4 @@
-package programmers.gilbut;
+package programmers.gilbut.ch3_Array;
 
 class Q68645 {
     static int[] dRow = {1,0,-1};

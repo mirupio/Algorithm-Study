@@ -1,4 +1,4 @@
-package programmers.gilbut;
+package programmers.gilbut.ch12_implementation;
 
 class Q49993 {
     public int solution(String skill, String[] skill_trees) {

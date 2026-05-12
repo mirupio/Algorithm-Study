@@ -1,4 +1,4 @@
-package programmers.gilbut;
+package programmers.gilbut.ch3_Array;
 
 import java.util.*;
 

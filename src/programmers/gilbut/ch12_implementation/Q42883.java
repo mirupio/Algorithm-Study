@@ -1,4 +1,4 @@
-package programmers.gilbut;
+package programmers.gilbut.ch12_implementation;
 
 // 틀린 답안 -> 시간 초과
 class Q42883 {
