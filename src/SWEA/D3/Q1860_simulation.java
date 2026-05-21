@@ -3,7 +3,7 @@ package SWEA.D3;
 import java.io.*;
 import java.util.*;
 
-public class Q1860_2 {
+public class Q1860_simulation {
 
     public static void main(String[] args) throws IOException{
         //System.setIn(new FileInputStream("src/ssafy/input (18).txt"));
