@@ -14,7 +14,9 @@ class Q72411 {
             for(String o: orders){
                 O = o.length();
                 C = c;
-                order = o;
+                char[] chars = o.toCharArray();
+                Arrays.sort(chars);
+                order = new String(chars);
                 dfs(0,"");
             }
 
@@ -62,9 +64,6 @@ class Q72411 {
         // course 수만큼 문자열 모아지면 map에 put
         if(index == O){
             if(str.length() == C){
-                char[] arr = str.toCharArray();
-                Arrays.sort(arr);
-                str = new String(arr);
                 map.put(str,map.getOrDefault(str,0)+1);
             }
             return;
