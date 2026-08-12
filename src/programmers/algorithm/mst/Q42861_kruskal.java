@@ -2,7 +2,7 @@ package programmers.algorithm.mst;
 
 import java.util.*;
 
-class Q42861 {
+class Q42861_kruskal {
 
     static int[] parent;
     public int solution(int n, int[][] costs) {
