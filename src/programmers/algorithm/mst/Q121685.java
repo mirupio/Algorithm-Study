@@ -1,4 +1,4 @@
-package programmers.algorithm.heap;
+package programmers.algorithm.mst;
 
 import java.util.*;
 
