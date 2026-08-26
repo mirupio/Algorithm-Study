@@ -9,16 +9,13 @@ class Q43236 {
         int answer = 0;
 
         Rocks = rocks;
-        for(int i=0;i<rocks.length;i++){
-            Rocks[i] = rocks[i];
-        }
         Arrays.sort(Rocks);
 
         N = n;
         Distance = distance;
 
         int left = 1;
-        int right = 1000000000;
+        int right = distance;
         while(left <= right){
             int mid = left+(right-left)/2;
 
