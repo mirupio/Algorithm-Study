@@ -1,4 +1,4 @@
-package programmers.gilbut.ch11_datastructure;
+package programmers.gilbut.ch12_implementation;
 
 import java.util.*;
 
