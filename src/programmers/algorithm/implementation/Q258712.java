@@ -2,7 +2,7 @@ package programmers.algorithm.implementation;
 
 import java.util.*;
 
-class Solution {
+class Q258712 {
     public int solution(String[] friends, String[] gifts) {
         int n = friends.length;
         Map<String,Integer> map = new HashMap<>();
